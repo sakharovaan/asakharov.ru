@@ -1,0 +1,10 @@
+.idea
+.htaccess
+*.pyc
+*.pyo
+*.log
+.vagrant
+passenger_wsgi.py
+core/settings/production.py
+static/*
+media/*
