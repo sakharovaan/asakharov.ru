@@ -7,7 +7,7 @@ cd /home/vagrant/asakharov && pipenv sync --dev
 
 mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -D mysql -u root
 mysql -u root < /home/vagrant/asakharov/vagrant/mysql_prov.sql
-mysql -u root django < /home/vagrant/asakharov/vagrant/dump.sql
+zcat /home/vagrant/asakharov/vagrant/dump.sql.gz | mysql -u root django
 cd /home/vagrant/asakharov && pipenv run python3 manage.py makemigrations && pipenv run python3 manage.py migrate
 
 rm -rf /home/vagrant/asakharov/static

@@ -16,6 +16,7 @@ wagtail = "*"
 wagtailmenus = "*"
 pygments = "*"
 whitenoise = "*"
+pygments-style-solarized = "*"
 
 [requires]
 python_version = "3.6"

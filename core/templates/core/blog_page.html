@@ -64,9 +64,9 @@
                 </section>
                 <section class="article">
                     {% if entry.excerpt %}
-                        {{ entry.excerpt|richtext }}
+                        {{ entry.excerpt }}
                     {% else %}
-                        {{ entry.body|richtext|truncatewords_html:70 }}
+                        {{ entry.body|truncatewords_html:70 }}
                     {% endif %}
                     <div class="row">
                         <ul class="social-share col-md-9">

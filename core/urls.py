@@ -58,7 +58,7 @@ if not getattr(settings, 'PUPUT_AS_PLUGIN', False):
 
     urlpatterns.extend([
         path(
-            route='blog_admin/',
+            route='admin/',
             view=include(wagtailadmin_urls)
         ),
         path(
