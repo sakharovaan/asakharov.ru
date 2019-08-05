@@ -53,9 +53,10 @@ class CodeBlock(StructBlock):
         lexer = get_lexer_by_name(lang)
         formatter = get_formatter_by_name(
             'html',
-            linenos=None,
+            linenos='table',
             cssclass='codehilite',
-            style='solarizedlight',
+            style='solarizeddark',
+            wrapcode=True,
             noclasses=False,
         )
         render_content = highlight(src, lexer, formatter)

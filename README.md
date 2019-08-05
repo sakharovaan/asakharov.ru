@@ -13,4 +13,6 @@ Development
 ```bash
 # for dumping 
 sudo mysqldump -u root django | gzip > /home/vagrant/asakharov/vagrant/dump.sql.gz
+# for changing code block style
+pygmentize -f html -S solarizeddark -a '.codehilite pre' > solarizeddark.css
 ```
