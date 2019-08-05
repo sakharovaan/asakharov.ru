@@ -1,0 +1,14 @@
+{% load static i18n wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags wagtailuserbar core_tags menu_tags %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+    <ul class="navbar-nav mr-auto">
+        {% for item in menu_items %}
+        <li class="nav-item {{ item.active_class }}">
+            <a class="nav-link" href="{{ item.href }}">{{ item.text }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <form class="form-inline my-2 my-lg-0" name="search_form" action="{% routablepageurl blog_page 'entries_search' %}">
+        <input class="form-control mr-sm-2" type="text" name="q" placeholder="{% trans 'Search' %}">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">{% trans 'Search' %}</button>
+    </form>
+</nav>

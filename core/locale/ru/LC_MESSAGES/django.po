@@ -187,7 +187,7 @@ msgstr "далее"
 
 #: templates/core/base.html:66
 msgid "Feed RSS"
-msgstr ""
+msgstr "Подписка на RSS"
 
 #: templates/core/base.html:71
 msgid "Search"
@@ -224,7 +224,7 @@ msgstr "Ничего не найдено."
 
 #: templates/core/entry_page.html:62
 msgid "Return"
-msgstr ""
+msgstr "Вернуться"
 
 #: templates/core/tags/archives_list.html:23
 msgid "No entry archives yet"

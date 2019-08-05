@@ -26,22 +26,6 @@
     {% endif %}
 {% endblock meta_description %}
 
-{% block social_share %}
-    {% image blog_page.header_image fill-800x450 as share_image %}
-    <meta property="og:title" content="{{ blog_page.title }}" />
-    <meta property="og:description" content="{{ blog_page.description }}" />
-    <meta property="og:url" content="{% canonical_url %}" />
-    {% if blog_page.header_image %}
-        <meta property="og:image" content="{% image_url share_image.url %}" />
-        <meta property="og:image:width" content="800" />
-        <meta property="og:image:height" content="450" />
-        <meta name="twitter:image" content="{% image_url share_image.url %}" />
-    {% endif %}
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="{{ blog_page.title }}" />
-    <meta name="twitter:description" content="{{ blog_page.description }}" />
-{% endblock social_share %}
-
 {% block content %}
     {% with per_page=blog_page.num_entries_page %}
         {# 'paginate' tag cannot render dotted variables, so we need to create a context var #}
@@ -51,43 +35,29 @@
         {% endif %}
         {% for entry in entries %}
             {% entry_url entry blog_page as post_url %}
-            <article class="box page-content blog_grid">
+            <article class="card border-primary mb-3">
                 {% include 'core/entry_page_header.html' %}
-                <section>
+                <section class="card-subtitle">
                     {% if entry.header_image %}
                         <span class="img-responsive">
                             {% image entry.header_image fill-800x240 as header_image %}
                             <img alt="{{ entry.header_image.title }}" src="{{ header_image.url }}">
                         </span>
                     {% endif %}
-                    {% include 'core/entry_links.html' %}
+                    <small class="text-muted card-text">{% include 'core/entry_links.html' %}</small>
                 </section>
-                <section class="article">
-                    {% if entry.excerpt %}
-                        {{ entry.excerpt }}
-                    {% else %}
-                        {{ entry.body|truncatewords_html:70 }}
-                    {% endif %}
-                    <div class="row">
-                        <ul class="social-share col-md-9">
-                            <li class="social-item">
-                               {% post_to_facebook post_url '<span><i class="fa fa-facebook"></i></span>' %}
-                            </li>
-                            <li class="social-item">
-                                {% post_to_twitter entry.title post_url '<span><i class="fa fa-twitter"></i></span>' %}
-                            </li>
-                            <li class="social-item">
-                                {% post_to_linkendin post_url '<span><i class="fa fa-linkedin"></i></span>' %}
-                            </li>
-                            <li class="social-item">
-                                {% post_to_gplus post_url '<span><i class="fa fa-google-plus"></i></span>' %}
-                            </li>
-                        </ul>
-                        <div class="col-md-3">
-                            <a class="blog_btn continue" href="{{ post_url }}">{% trans 'Continue reading' %} &raquo;</a>
-                        </div>
+                <section class="article card-body">
+                    <div class="card-text">
+                        {% if entry.excerpt %}
+                            {{ entry.excerpt }}
+                        {% else %}
+                            {{ entry.body|truncatewords_html:70 }}
+                        {% endif %}
                     </div>
                 </section>
+                <footer class="card-footer">
+                    <a class="card-text text-muted text-right" href="{{ post_url }}">{% trans 'Continue reading' %} &raquo;</a>
+                </footer>
             </article>
         {% empty %}
             <span>{% trans 'No results found.' %}</span>
@@ -98,3 +68,38 @@
         </div>
     {% endwith %}
 {% endblock content %}
+
+{% block sidebar %}
+<div class="blog_sidebar">
+    {% if blog_page.display_last_entries %}
+    <div class="card border-dark mb-3">
+        <div class="card-header">{% trans 'Last Entries' %}</div>
+        {% recent_entries blog_page.num_last_entries %}
+    </div>
+    {% endif %}
+    {% if blog_page.display_popular_entries %}
+    <div class="card border-dark mb-3">
+        <div class="card-header">{% trans 'Popular Entries' %}</div>
+        {% popular_entries blog_page.num_popular_entries %}
+    </div>
+    {% endif %}
+    {% if blog_page.display_categories %}
+    <div class="card border-dark mb-3">
+        <div class="card-header">{% trans 'Categories' %}</div>
+        {% categories_list %}
+    </div>
+    {% endif %}
+    {% if blog_page.display_tags %}
+    <div class="card border-dark mb-3">
+        <div class="card-header">{% trans 'Tags' %}</div>
+        {% tags_list %}
+    </div>
+    {% endif %}
+    {% if blog_page.display_archive %}
+    <div class="card border-dark mb-3">
+        <div class="card-header">{% trans 'Archive' %}</div>
+        {% archives_list %}
+    </div>
+    {% endif %}
+</div>
+{% endblock sidebar %}
