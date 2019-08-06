@@ -12,7 +12,7 @@
 
 {% block meta_title %}
     {% if search_term %}
-        {% trans 'Entries for' %} {{ search_type }} {{ search_term }}
+        <p>{% trans 'Entries for' %} {{ search_type }} {{ search_term }}</p>
     {% else %}
         {{ block.super }}
     {% endif %}
@@ -20,7 +20,7 @@
 
 {% block meta_description %}
     {% if search_term %}
-        {% trans 'Entries for' %} {{ search_type }} {{ search_term }}
+        <p>{% trans 'Entries for' %} {{ search_type }} {{ search_term }}</p>
     {% else %}
         {{ block.super }}
     {% endif %}
@@ -31,22 +31,24 @@
         {# 'paginate' tag cannot render dotted variables, so we need to create a context var #}
         {% paginate per_page entries %}
         {% if search_term %}
-            <div class="searchTerm">{% trans 'Entries for' %} {{ search_type }} "{{ search_term }}"</div>
+            <p>{% trans 'Entries for' %} {{ search_type }} "{{ search_term }}"</p>
         {% endif %}
         {% for entry in entries %}
             {% entry_url entry blog_page as post_url %}
             <article class="card border-primary mb-3">
-                {% include 'core/entry_page_header.html' %}
+                <header class="card-title">
+                    <h4 class="card-header">
+                        <a href="{% entry_url entry blog_page %}">{{ entry.title }}</a>
+                    </h4>
+                </header>
+                {% if entry.header_image %}
+                    {% image entry.header_image fill-800x240 as header_image %}
+                    <img alt="{{ entry.header_image.title }}" src="{{ header_image.url }}" class="mb-3">
+                {% endif %}
                 <section class="card-subtitle">
-                    {% if entry.header_image %}
-                        <span class="img-responsive">
-                            {% image entry.header_image fill-800x240 as header_image %}
-                            <img alt="{{ entry.header_image.title }}" src="{{ header_image.url }}">
-                        </span>
-                    {% endif %}
                     <small class="text-muted card-text">{% include 'core/entry_links.html' %}</small>
                 </section>
-                <section class="article card-body">
+                <section class="article card-body overflow-hidden">
                     <div class="card-text">
                         {% if entry.excerpt %}
                             {{ entry.excerpt }}
@@ -56,10 +58,11 @@
                     </div>
                 </section>
                 <footer class="card-footer">
-                    <a class="card-text text-muted text-right" href="{{ post_url }}">{% trans 'Continue reading' %} &raquo;</a>
+                    <a class="card-text text-muted text-right" href="{{ post_url }}">{% trans 'Continue reading' %}
+                        &raquo;</a>
                 </footer>
             </article>
-        {% empty %}
+            {% empty %}
             <span>{% trans 'No results found.' %}</span>
         {% endfor %}
 
@@ -70,36 +73,26 @@
 {% endblock content %}
 
 {% block sidebar %}
-<div class="blog_sidebar">
-    {% if blog_page.display_last_entries %}
-    <div class="card border-dark mb-3">
-        <div class="card-header">{% trans 'Last Entries' %}</div>
-        {% recent_entries blog_page.num_last_entries %}
+    <div class="blog_sidebar">
+        {% if blog_page.display_categories %}
+            <div class="card border-dark mb-3">
+                <div class="card-header">{% trans 'Categories' %}</div>
+                {% categories_list %}
+            </div>
+        {% endif %}
+        {% if blog_page.display_tags %}
+            <div class="card border-dark mb-3">
+                <div class="card-header">{% trans 'Tags' %}</div>
+                <div class="card-body p-1">
+                    <div class="card-text">{% tags_list %}</div>
+                </div>
+            </div>
+        {% endif %}
+        {% if blog_page.display_archive %}
+            <div class="card border-dark mb-3">
+                <div class="card-header">{% trans 'Archive' %}</div>
+                {% archives_list %}
+            </div>
+        {% endif %}
     </div>
-    {% endif %}
-    {% if blog_page.display_popular_entries %}
-    <div class="card border-dark mb-3">
-        <div class="card-header">{% trans 'Popular Entries' %}</div>
-        {% popular_entries blog_page.num_popular_entries %}
-    </div>
-    {% endif %}
-    {% if blog_page.display_categories %}
-    <div class="card border-dark mb-3">
-        <div class="card-header">{% trans 'Categories' %}</div>
-        {% categories_list %}
-    </div>
-    {% endif %}
-    {% if blog_page.display_tags %}
-    <div class="card border-dark mb-3">
-        <div class="card-header">{% trans 'Tags' %}</div>
-        {% tags_list %}
-    </div>
-    {% endif %}
-    {% if blog_page.display_archive %}
-    <div class="card border-dark mb-3">
-        <div class="card-header">{% trans 'Archive' %}</div>
-        {% archives_list %}
-    </div>
-    {% endif %}
-</div>
 {% endblock sidebar %}

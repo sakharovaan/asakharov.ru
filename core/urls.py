@@ -1,13 +1,13 @@
 from django.urls import reverse, path, include
 from django.conf import settings
 from django.conf.urls import include, url
+from django.conf.urls.static import static
 from django.contrib import admin
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
-
-from search import views as search_views
+from wagtail.contrib.sitemaps.views import sitemap
 
 from .feeds import BlogPageFeed
 from .views import EntryPageServe, EntryPageUpdateCommentsView
@@ -16,10 +16,12 @@ from .utils import strip_prefix_and_ending_slash
 
 urlpatterns = [
     url(r'^django-admin/', admin.site.urls),
-
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
-    url(r'^search/$', search_views.search, name='search'),
+    path(
+        route='sitemap.xml',
+        view=sitemap
+    ),
 
     path(
         route='entry_page/<entry_page_id>/update_comments/',
@@ -50,30 +52,8 @@ urlpatterns = [
     url(r'', include(wagtail_urls)),
 ]
 
-if not getattr(settings, 'PUPUT_AS_PLUGIN', False):
-    from wagtail.core import urls as wagtail_urls
-    from wagtail.admin import urls as wagtailadmin_urls
-    from wagtail.documents import urls as wagtaildocs_urls
-    from wagtail.contrib.sitemaps.views import sitemap
-
-    urlpatterns.extend([
-        path(
-            route='admin/',
-            view=include(wagtailadmin_urls)
-        ),
-        path(
-            route='',
-            view=include(wagtail_urls)
-        ),
-        path(
-            route='documents/',
-            view=include(wagtaildocs_urls)
-        ),
-        path(
-            route='sitemap.xml',
-            view=sitemap
-        )
-    ])
+if settings.SERVE_MEDIA_FILES:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 def get_entry_url(entry, blog_page, root_page):

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-10 09:49+0200\n"
+"POT-Creation-Date: 2019-08-06 07:39+0300\n"
 "PO-Revision-Date: 2017-01-24 15:08+0700\n"
 "Last-Translator: Basil Shubin <basil.shubin@gmail.com>\n"
 "Language-Team: \n"
@@ -19,225 +19,231 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: abstracts.py:16
-msgid "body"
-msgstr "тело"
-
-#: abstracts.py:18
+#: core/abstracts.py:85
 msgid "Post date"
 msgstr "Дата публикации"
 
-#: abstracts.py:21 models.py:38
+#: core/abstracts.py:88 core/models.py:38
 msgid "Header image"
 msgstr "Изображение заголовка"
 
-#: abstracts.py:29
-msgid "excerpt"
-msgstr "выдержка"
-
-#: abstracts.py:31
+#: core/abstracts.py:106
 msgid ""
 "Entry excerpt to be displayed on entries list. If this field is not filled, "
 "a truncate version of body text will be used."
 msgstr ""
 
-#: abstracts.py:44
+#: core/abstracts.py:109
+msgid "excerpt"
+msgstr "выдержка"
+
+#: core/abstracts.py:121
 msgid "Content"
 msgstr "Содержимое"
 
-#: abstracts.py:49 models.py:165 templates/core/base.html:92
+#: core/abstracts.py:126 core/models.py:165
+#: core/templates/core/blog_page.html:79
 msgid "Categories"
 msgstr "Рубрики"
 
-#: abstracts.py:52 templates/core/related_entries.html:6
+#: core/abstracts.py:129 core/templates/core/related_entries.html:6
 msgid "Related Entries"
 msgstr "Связанные записи"
 
-#: abstracts.py:56
+#: core/abstracts.py:133
 msgid "Metadata"
 msgstr "Мета данные"
 
-#: models.py:31 models.py:142
+#: core/models.py:31 core/models.py:142
 msgid "Description"
 msgstr "Описание"
 
-#: models.py:34
+#: core/models.py:34
 msgid "The blog description that will appear under the title."
 msgstr ""
 
-#: models.py:45
+#: core/models.py:45
 msgid "Blog Main Color"
 msgstr ""
 
-#: models.py:47
+#: core/models.py:47
 msgid "Display comments"
 msgstr "Комментарии"
 
-#: models.py:48
+#: core/models.py:48
 msgid "Display categories"
 msgstr "Рубрики"
 
-#: models.py:49
+#: core/models.py:49
 msgid "Display tags"
 msgstr "Метки"
 
-#: models.py:50
+#: core/models.py:50
 msgid "Display popular entries"
 msgstr "Популярные записи"
 
-#: models.py:51
+#: core/models.py:51
 msgid "Display last entries"
 msgstr "Последнии записи"
 
-#: models.py:52
+#: core/models.py:52
 msgid "Display archive"
 msgstr "Архив"
 
-#: models.py:57
+#: core/models.py:57
 msgid "Entries per page"
 msgstr "Количество записей на странице"
 
-#: models.py:58
+#: core/models.py:58
 msgid "Last entries limit"
 msgstr ""
 
-#: models.py:59
+#: core/models.py:59
 msgid "Popular entries limit"
 msgstr ""
 
-#: models.py:60
+#: core/models.py:60
 msgid "Tags limit entry header"
 msgstr ""
 
-#: models.py:62
+#: core/models.py:62
 msgid "Use short description in feeds"
 msgstr ""
 
-#: models.py:80
+#: core/models.py:80
 msgid "Widgets"
 msgstr "Виджеты"
 
-#: models.py:89
+#: core/models.py:89
 msgid "Parameters"
 msgstr "Параметры"
 
-#: models.py:97
+#: core/models.py:97
 msgid "Comments"
 msgstr "Комментарии"
 
-#: models.py:103
+#: core/models.py:103
 msgid "Feeds"
 msgstr ""
 
-#: models.py:127
+#: core/models.py:127
 msgid "Blog"
 msgstr "Блог"
 
-#: models.py:132
+#: core/models.py:132
 msgid "Category name"
 msgstr "Название рубрики"
 
-#: models.py:139
+#: core/models.py:139
 msgid "Parent category"
 msgstr "Родительская рубрика"
 
-#: models.py:153
+#: core/models.py:153
 msgid "Parent category cannot be self."
 msgstr "Рубрика не может быть унаследована от самой себя."
 
-#: models.py:155
+#: core/models.py:155
 msgid "Cannot have circular Parents."
 msgstr ""
 
-#: models.py:164 models.py:169
+#: core/models.py:164 core/models.py:169
 msgid "Category"
 msgstr "Рубрика"
 
-#: models.py:189 models.py:190 models.py:245
+#: core/models.py:192 core/models.py:193 core/models.py:251
 msgid "Entry"
 msgstr "Запись"
 
-#: models.py:246
+#: core/models.py:252
 msgid "Entries"
 msgstr "Записи"
 
-#: routes.py:22
+#: core/routes.py:22
 msgid "date"
 msgstr "дата"
 
-#: routes.py:35
+#: core/routes.py:35
 msgid "tag"
 msgstr "метка"
 
-#: routes.py:42
+#: core/routes.py:42
 msgid "category"
 msgstr "рубрика"
 
-#: routes.py:49
+#: core/routes.py:49
 msgid "author"
 msgstr "автор"
 
-#: routes.py:62
+#: core/routes.py:62
 msgid "search"
 msgstr "поиск"
 
-#: templates/el_pagination/show_more.html:5
-msgid "more"
-msgstr "далее"
+#: core/settings/base.py:144
+msgid "Russian"
+msgstr ""
 
-#: templates/core/base.html:66
-msgid "Feed RSS"
-msgstr "Подписка на RSS"
+#: core/settings/base.py:145
+msgid "English"
+msgstr ""
 
-#: templates/core/base.html:71
-msgid "Search"
-msgstr "Поиск"
-
-#: templates/core/base.html:80
-msgid "Last Entries"
-msgstr "Последние записи"
-
-#: templates/core/base.html:86
-msgid "Popular Entries"
-msgstr "Популярные записи"
-
-#: templates/core/base.html:98
-msgid "Tags"
-msgstr "Метки"
-
-#: templates/core/base.html:104
-msgid "Archive"
-msgstr "Архив"
-
-#: templates/core/blog_page.html:15 templates/core/blog_page.html.py:23
-#: templates/core/blog_page.html:50
+#: core/templates/core/blog_page.html:15 core/templates/core/blog_page.html:23
+#: core/templates/core/blog_page.html:34
 msgid "Entries for"
 msgstr "Записи:"
 
-#: templates/core/blog_page.html:84
+#: core/templates/core/blog_page.html:61
 msgid "Continue reading"
 msgstr "Читать далее"
 
-#: templates/core/blog_page.html:90
+#: core/templates/core/blog_page.html:66
 msgid "No results found."
 msgstr "Ничего не найдено."
 
-#: templates/core/entry_page.html:62
+#: core/templates/core/blog_page.html:85
+msgid "Tags"
+msgstr "Метки"
+
+#: core/templates/core/blog_page.html:93
+msgid "Archive"
+msgstr "Архив"
+
+#: core/templates/core/entry_page.html:86
 msgid "Return"
 msgstr "Вернуться"
 
-#: templates/core/tags/archives_list.html:23
+#: core/templates/core/tags/archives_list.html:23
 msgid "No entry archives yet"
 msgstr "Нет записей в архиве"
 
-#: templates/core/tags/categories_list.html:9
+#: core/templates/core/tags/categories_list.html:7
 msgid "No categories yet"
 msgstr "Рубрики отсутствуют"
 
-#: templates/core/tags/entries_list.html:31
+#: core/templates/core/tags/entries_list.html:31
 msgid "No entries yet"
 msgstr "Записей еще нет"
 
-#: templates/core/tags/tags_list.html:9
+#: core/templates/core/tags/tags_list.html:8
+#: core/templates/core/tags/tags_list_entry.html:8
 msgid "No tags yet"
 msgstr "Меток нет"
+
+#: core/templates/el_pagination/show_more.html:5
+msgid "more"
+msgstr "далее"
+
+#: core/templates/menus/navbar.html:14
+msgid "Search"
+msgstr "Поиск"
+
+#~ msgid "body"
+#~ msgstr "тело"
+
+#~ msgid "Feed RSS"
+#~ msgstr "Подписка на RSS"
+
+#~ msgid "Last Entries"
+#~ msgstr "Последние записи"
+
+#~ msgid "Popular Entries"
+#~ msgstr "Популярные записи"

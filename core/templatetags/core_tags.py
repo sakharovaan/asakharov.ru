@@ -55,10 +55,39 @@ def categories_list(context, categories_qs=None):
     return context
 
 
+@register.inclusion_tag('core/tags/tags_list_entry.html', takes_context=True)
+def tags_list_entry(context, limit=None, tags_qs=None):
+    blog_page = context['blog_page']
+    if tags_qs:
+        tags = tags_qs.all()
+    else:
+        tags = Tag.objects.most_common(blog_page)
+    if limit:
+        tags = tags[:limit]
+    context['tags'] = tags
+    return context
+
+
+@register.inclusion_tag('core/tags/categories_list_entry.html', takes_context=True)
+def categories_list_entry(context, categories_qs=None):
+    blog_page = context['blog_page']
+    if categories_qs:
+        categories = categories_qs.all()
+    else:
+        categories = Category.objects.with_uses(blog_page).filter(parent=None)
+    context['categories'] = categories
+    return context
+
+
 @register.inclusion_tag('core/tags/archives_list.html', takes_context=True)
 def archives_list(context):
     blog_page = context['blog_page']
     context['archives'] = blog_page.get_entries().datetimes('date', 'day', order='DESC')
+    return context
+
+
+@register.inclusion_tag('core/blog_header.html', takes_context=True)
+def blog_header(context):
     return context
 
 

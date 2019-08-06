@@ -2,6 +2,7 @@ from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+SERVE_MEDIA_FILES = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '%!awx&%l(+*&vgpqi&h_v#3-je=hitskxczgiqf7p6agd$1t2s'

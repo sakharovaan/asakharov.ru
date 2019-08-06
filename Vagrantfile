@@ -37,7 +37,8 @@ Vagrant.configure(2) do |config|
 
     config.ssh.forward_agent = true
 
-    config.vm.provision :shell, :path => "vagrant/provision.sh"
+    config.vm.provision "shell", path: "vagrant/provision.sh"
+    config.vm.provision "shell", run: "always", inline: "systemctl restart gunicorn"
 
     if File.exist? "Vagrantfile.local"
         instance_eval File.read("Vagrantfile.local"), "Vagrantfile.local"

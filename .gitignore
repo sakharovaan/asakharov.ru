@@ -3,6 +3,7 @@
 *.pyc
 *.pyo
 *.log
+*.mo
 .vagrant
 passenger_wsgi.py
 core/settings/production.py

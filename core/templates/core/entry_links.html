@@ -13,10 +13,10 @@
         </div>
         <div class="col-sm-8">
             {% if entry.categories.count > 0 %}
-                {% categories_list entry.categories %}
+                {% categories_list_entry entry.categories %}
             {% endif %}
             {% if entry.tags.count > 0 %}
-            {% tags_list blog_page.num_tags_entry_header entry.tags %}
+            {% tags_list_entry blog_page.num_tags_entry_header entry.tags %}
             {% endif %}
             {% if blog_page.display_comments %}
                 <i class="fa fa-comments"></i>

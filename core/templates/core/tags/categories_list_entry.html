@@ -1,0 +1,7 @@
+{% load i18n wagtailroutablepage_tags %}
+
+{% for category in categories %}
+    <span>
+        <a class="badge badge-success badge-pill" href="{% routablepageurl blog_page "entries_by_category" category.slug %}">{{ category.name }}</a>
+    </span>
+{% endfor %}

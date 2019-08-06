@@ -12,9 +12,6 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 
 INSTALLED_APPS = [
-    'core',
-    'search',
-
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.contrib.modeladmin',
@@ -42,7 +39,8 @@ INSTALLED_APPS = [
     'wagtail.contrib.routable_page',
     'django_social_share',
     'colorful',
-    'wagtailmenus'
+    'wagtailmenus',
+    'core'
 ]
 
 MIDDLEWARE = [
@@ -145,4 +143,8 @@ WAGTAIL_SITE_NAME = "Devops notes"
 LANGUAGES = [
   ('ru', _('Russian')),
   ('en', _('English')),
+]
+
+LOCALE_PATHS = [
+    os.path.join(PROJECT_DIR, 'core', 'locale'),
 ]
