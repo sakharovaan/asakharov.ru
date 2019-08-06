@@ -98,7 +98,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -111,7 +110,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -135,16 +133,18 @@ MEDIA_URL = '/media/'
 # See https://docs.djangoproject.com/en/2.2/ref/contrib/staticfiles/#manifeststaticfilesstorage
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "Devops notes"
 
 LANGUAGES = [
-  ('ru', _('Russian')),
-  ('en', _('English')),
+    ('ru', _('Russian')),
+    ('en', _('English')),
 ]
 
-LOCALE_PATHS = [
-    os.path.join(PROJECT_DIR, 'core', 'locale'),
-]
+PROFILES = dict(
+    linkedin="https://www.linkedin.com/in/sakharovaan/",
+    telegram="https://t.me/sakharovaan",
+    github="https://github.com/sakharovaan",
+    mail="mailto:mail@asakharov.ru"
+)

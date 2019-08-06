@@ -1,5 +1,6 @@
 from django.template import Library
 from django.urls import resolve
+from django.conf import settings
 from django.template.loader import render_to_string
 from django.template.defaultfilters import urlencode
 from django_social_share.templatetags.social_share import _build_url
@@ -145,3 +146,8 @@ def post_to_linkendin(context, obj_or_url=None, link_text='Post to Linkedin'):
     context = post_to_linkendin_url(context, obj_or_url)
     context['link_text'] = link_text
     return context
+
+
+@register.simple_tag(takes_context=True)
+def profile_link(context, profile):
+    return settings.PROFILES.get(profile, '')

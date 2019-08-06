@@ -7,9 +7,10 @@
         </li>
         {% endfor %}
     </ul>
-    <button class="btn btn-secondary my-2 my-sm-0"><i class="fab fa-telegram-plane"></i></button>
-    <button class="btn btn-secondary my-2 my-sm-0"><i class="fab fa-linkedin"></i></button>
-    <button class="btn btn-secondary my-2 my-sm-0"><i class="fab fa-github"></i></button>
+    <a class="btn btn-secondary my-2 my-sm-0" href="{% profile_link 'telegram' %}"><i class="fab fa-telegram-plane"></i></a>
+    <a class="btn btn-secondary my-2 my-sm-0" href="{% profile_link 'linkedin' %}"><i class="fab fa-linkedin"></i></a>
+    <a class="btn btn-secondary my-2 my-sm-0" href="{% profile_link 'github' %}"><i class="fab fa-github"></i></a>
+    <a class="btn btn-secondary my-2 my-sm-0" href="{% profile_link 'mail' %}"><i class="fa fa-envelope"></i></a>
     <form class="form-inline my-2 my-lg-0" name="search_form" action="{% routablepageurl blog_page 'entries_search' %}">
         <input class="form-control mr-sm-2" type="text" name="q" placeholder="{% trans 'Search' %}">
         <button class="btn btn-secondary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
