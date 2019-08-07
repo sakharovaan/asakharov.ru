@@ -6,3 +6,9 @@
 .block-table>table{
 
 }
+
+.codehilitetable {
+    overflow-x: auto;
+    display: block;
+    white-space: nowrap;
+}
